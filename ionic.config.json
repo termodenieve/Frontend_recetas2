@@ -1,0 +1,7 @@
+{
+  "name": "sweet_recipe",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}
