@@ -1,0 +1,36 @@
+<ion-content class="ion-padding login-container">
+  <ion-card>
+
+    <div class="card-header-grid">
+      <div class="image-container">
+        <img src="assets/l.png" alt="Logo" class="login-image" />
+      </div>
+      <ion-card-title>Crear tu cuenta</ion-card-title>
+    </div>
+
+    
+    <div class="input-container">
+      <label>Nombre Completo</label>
+      <ion-input [(ngModel)]="name" type="text" placeholder="Nombre Completo"></ion-input>
+    </div>
+
+    <div class="input-container">
+      <label>Usuario</label>
+      <ion-input [(ngModel)]="username" type="text" placeholder="Usuario"></ion-input>
+    </div>
+
+    <div class="input-container">
+      <label>Correo Electrónico</label>
+      <ion-input [(ngModel)]="email" type="email" placeholder="Correo Electrónico"></ion-input>
+    </div>
+
+    <div class="input-container">
+      <label>Contraseña</label>
+      <ion-input [(ngModel)]="password" type="password" placeholder="Contraseña"></ion-input>
+    </div>
+
+    <ion-button (click)="registrar()" expand="block" shape="round" color="primary">
+      Crear Cuenta
+    </ion-button>
+  </ion-card>
+</ion-content>

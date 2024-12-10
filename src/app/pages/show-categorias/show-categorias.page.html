@@ -1,0 +1,23 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title>Tus Categorías</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <div>
+    <ion-card *ngFor="let categoria of categorias">
+      <ion-card-title>{{ categoria.nombre }}</ion-card-title>
+      <ion-card-content>
+        {{ categoria.descripcion }}
+      </ion-card-content>
+
+      <ion-button expand="block" color="primary" (click)="redirectToUpdateCate()">
+        Actualizar
+      </ion-button>
+    </ion-card>
+  </div>
+  
+</ion-content>
+
+

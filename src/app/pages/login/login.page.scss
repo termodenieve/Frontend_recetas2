@@ -1,0 +1,61 @@
+/* Asegúrate de que los estilos se apliquen solo a tu página de login */
+.login-container {
+  display: grid;
+  justify-items: center;
+  align-items: center;
+  height: 100vh; /* Asegura que la página ocupe toda la altura */
+  padding: 20px;
+}
+
+.card-header-grid {
+  display: grid;
+  justify-items: center; /* Centra el logo */
+  text-align: center;
+  grid-template-columns: 1fr; /* Una sola columna para el logo y el título */
+}
+
+.image-container {
+  margin-bottom: 15px;
+}
+
+.login-image {
+  width: 80px; /* Ajusta el tamaño del logo */
+  height: auto;
+}
+
+ion-card-title {
+  font-size: 24px;
+  font-weight: bold;
+  margin-top: 10px;
+}
+
+ion-card-content {
+  display: grid;
+  gap: 20px; /* Espacio entre los inputs y el botón */
+}
+
+ion-input {
+  width: 100%; /* Hace que los inputs ocupen el 100% del ancho disponible */
+}
+
+ion-button {
+  width: 100%; /* Hace que el botón ocupe el 100% del ancho */
+}
+
+.signup-text {
+  text-align: center;
+}
+
+.signup-text p {
+  font-size: 14px;
+}
+
+.signup-text a {
+  color: var(--ion-color-primary); /* Color del enlace */
+  font-weight: bold;
+  text-decoration: none;
+}
+
+.signup-text a:hover {
+  text-decoration: underline;
+}

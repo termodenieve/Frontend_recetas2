@@ -1,0 +1,17 @@
+<ion-content class="ion-padding login-container">
+  <ion-card>
+    <ion-card-header>
+      <div class="image-container">
+        <img src="assets/l.png" alt="Logo" class="login-image" />
+      </div>
+      <ion-card-title>Iniciar Sesión</ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+      <ion-input [(ngModel)]="user" type="text" placeholder="Nombre de usuario"></ion-input>
+      <ion-input [(ngModel)]="pass" type="password" placeholder="Contraseña"></ion-input>
+      <ion-button (click)="login()" expand="block" shape="round" color="primary">
+        Ingresar
+      </ion-button>
+    </ion-card-content>
+  </ion-card>
+</ion-content>

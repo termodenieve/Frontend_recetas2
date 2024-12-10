@@ -1,0 +1,42 @@
+<ion-content class="ion-padding receta-container">
+  <ion-card>
+    <ion-card-header>
+      <ion-card-title class="ion-text-center">Crear Receta</ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+
+      <ion-input [(ngModel)]="titulo" type="text" placeholder="Título de la receta"></ion-input>
+
+      <ion-input [(ngModel)]="descripcion" type="text" placeholder="Descripción de la receta"></ion-input>
+
+      <ion-input [(ngModel)]="ingredientes" type="text" placeholder="Ingredientes"></ion-input>
+
+ 
+      <ion-input [(ngModel)]="instrucciones" type="text" placeholder="Instrucciones de preparación"></ion-input>
+
+   
+      <ion-input [(ngModel)]="tiempo_coccion" type="number" placeholder="Tiempo de cocción (minutos)"></ion-input>
+
+
+      <ion-input [(ngModel)]="imagen" type="file" placeholder="Imagen"></ion-input>
+
+
+      <ion-select [(ngModel)]="id_categoria" placeholder="Selecciona una categoría">
+        <ion-select-option *ngFor="let categoria of categorias" [value]="categoria.idcategoria">
+          {{ categoria.nombre }}
+        </ion-select-option>
+      </ion-select>
+
+ 
+      <ion-button (click)="crearReceta()" expand="block" shape="round" color="primary">
+        Crear Receta
+      </ion-button>
+
+      <ion-button (click)="redirectToshowhome()" expand="block" shape="round" color="primary">
+        Cancelar
+      </ion-button>
+    </ion-card-content>
+  </ion-card>
+
+  
+</ion-content>

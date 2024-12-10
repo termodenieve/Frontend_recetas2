@@ -1,0 +1,27 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title>Mi perfil</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <div>
+    <ion-card *ngFor="let user of users">
+      <ion-card-header>
+        <ion-card-title>{{ user.name }}</ion-card-title>
+      </ion-card-header>
+      <ion-card-content>
+        <p><strong>Username:</strong> {{ user.username }}</p>
+        <p><strong>Email:</strong> {{ user.email }}</p>
+        <ion-button expand="block" color="primary" (click)="redirectToUpdateUser()">
+          Actualizar Usuario
+        </ion-button>
+      </ion-card-content>
+    </ion-card>
+  </div>
+ 
+ 
+</ion-content>
+
+
+

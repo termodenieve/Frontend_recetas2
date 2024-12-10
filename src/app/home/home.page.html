@@ -1,20 +1,103 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
-    <ion-title>
-      Blank
-    </ion-title>
+
+    <ion-buttons slot="start">
+      <img src="assets/l.png" alt="Logo" style="height: 40px; width: auto;" />
+    </ion-buttons>
+
+    <ion-title class="ion-text-center">Sweet Recipes</ion-title>
+
+    <ion-buttons slot="end">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
   </ion-toolbar>
 </ion-header>
 
-<ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">Blank</ion-title>
-    </ion-toolbar>
-  </ion-header>
+<ion-content [fullscreen]="true" class="ion-padding">
 
-  <div id="container">
-    <strong>Ready to create an app?</strong>
-    <p>Start with Ionic <a target="_blank" rel="noopener noreferrer" href="https://ionicframework.com/docs/components">UI Components</a></p>
+  <ion-menu contentId="main-content">
+    <ion-header>
+      <ion-toolbar>
+        <ion-title>Contenido</ion-title>
+      </ion-toolbar>
+    </ion-header>
+    <ion-content class="ion-padding">
+      <div class="menu-container">
+        <ion-button expand="block" (click)="redirectToAddCat()">Crea una categoría</ion-button>
+        <ion-button expand="block" (click)="redirectToAddRece()">Crea una receta</ion-button>
+        <ion-button expand="block" (click)="redirectToAddUser()">Regístrate</ion-button>
+        <ion-button expand="block" (click)="redirectTologin()">Inicia Sesión</ion-button>
+      </div>
+    </ion-content>
+    
+  </ion-menu>
+
+  <div class="ion-page" id="main-content">
+    <ion-header>
+      <ion-toolbar>
+        <ion-buttons slot="start">
+          <ion-menu-button></ion-menu-button>
+        </ion-buttons>
+        <ion-title>Menú</ion-title>
+      </ion-toolbar>
+    </ion-header>
+
+    <ion-content class="ion-padding">
+      <h2 class="section-title">¿Qué postres harás hoy?</h2>
+      <div class="filter-buttons">
+       
+        <ion-button fill="outline">Endulza tu vida</ion-button>
+        <ion-button fill="outline">Endulza tu día</ion-button>
+        <ion-button fill="outline">Endulza a todos</ion-button>
+      </div>
+
+      <div class="info-section">
+        <h3>¿Qué somos?</h3>
+        <p>
+          Nuestra misión en Sweet Recipes es <strong>que puedas crear tus propias recetas</strong>,
+          y que lleves un control de todo lo que ya haz creado, podras crear tus poripias categorias
+          y recetas. 
+        </p>
+        
+        
+      </div>
+
+      <h3 class="section-title"></h3>
+      <div class="grid-container">
+        <div class="grid-item">
+          <img src="assets/postre4.jpg"/>
+        </div>
+        <div class="grid-item">
+          <img src="assets/postre2.jpg"/>
+        </div>
+        <div class="grid-item">
+          <img src="assets/postre5.jpg"/>
+        </div>
+        <div class="grid-item">
+          <img src="assets/postre7.jpg">
+        </div>
+      </div>
+    </ion-content>
   </div>
+
+  <ion-tabs>
+    <ion-tab-bar slot="bottom">
+      <ion-tab-button tab="home" routerLink="/home">
+        <ion-icon name="home-outline"></ion-icon>
+        Inicio
+      </ion-tab-button>
+      <ion-tab-button tab="create" (click)="redirectToShowRece()">
+        <ion-icon name="create-outline"></ion-icon>
+        Mis recetas
+      </ion-tab-button>
+      <ion-tab-button tab="copy" (click)="redirectToShowCat()">
+        <ion-icon name="copy-outline"></ion-icon>
+        Categorías
+      </ion-tab-button>
+      <ion-tab-button tab="person" (click)="redirectToShowUser()">
+        <ion-icon name="person-outline"></ion-icon>
+        Perfil
+      </ion-tab-button>
+    </ion-tab-bar>
+  </ion-tabs>
 </ion-content>

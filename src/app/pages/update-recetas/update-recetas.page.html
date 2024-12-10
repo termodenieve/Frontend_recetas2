@@ -1,0 +1,53 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title>Actualizar Receta</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <form [formGroup]="recetaForm" (ngSubmit)="actualizarReceta()">
+    <ion-item>
+      <ion-label position="floating">Título</ion-label>
+      <ion-input formControlName="titulo"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="floating">Descripción</ion-label>
+      <ion-textarea formControlName="descripcion"></ion-textarea>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="floating">Instrucciones</ion-label>
+      <ion-textarea formControlName="instrucciones"></ion-textarea>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="floating">Ingredientes</ion-label>
+      <ion-textarea formControlName="ingredientes"></ion-textarea>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="floating">Tiempo de Cocción</ion-label>
+      <ion-input type="number" formControlName="tiempo_coccion"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="floating">ID Categoría</ion-label>
+      <ion-input type="number" formControlName="id_categoria"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="floating">ID Usuario</ion-label>
+      <ion-input type="number" formControlName="id_user"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label>Imagen</ion-label>
+      <input type="file" (change)="recetaForm.get('imagen').setValue($event.target.files[0])" />
+    </ion-item>
+
+    <ion-button expand="full" type="submit" [disabled]="recetaForm.invalid">
+      Actualizar Receta
+    </ion-button>
+  </form>
+</ion-content>

@@ -1,0 +1,36 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Tus Recetas</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <div class="ion-padding">
+    <ion-card *ngFor="let receta of recetas">
+      <ion-card-header>
+        <ion-card-title class="ion-text-center">{{ receta.titulo }}</ion-card-title>
+      </ion-card-header>
+      <ion-img [src]="receta.imagen" alt="{{ receta.titulo }}" class="receta-imagen"></ion-img>
+
+      <ion-card-content>
+        <p><strong>Categoria:</strong></p>
+        <p>{{ receta.categorias }}</p>
+        
+        <p><strong>Descripción:</strong></p>
+        <p>{{ receta.descripcion }}</p>
+     
+        <p><strong>Tiempo de cocción en minutos:</strong></p>
+        <p>{{ receta.tiempo_coccion }}</p>
+      
+        <p><strong>Instrucciones:</strong></p>
+        <p>{{ receta.instrucciones }}</p>
+
+      </ion-card-content>
+
+      <ion-button expand="block" color="primary" (click)="redirectToUpdateRe()">
+        Actualizar
+      </ion-button>
+    </ion-card>
+  </div>
+
+  
