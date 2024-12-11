@@ -43,8 +43,9 @@
 
     <ion-item>
       <ion-label>Imagen</ion-label>
-      <input type="file" (change)="recetaForm.get('imagen').setValue($event.target.files[0])" />
+      <input type="file" (change)="onFileChange($event)" />
     </ion-item>
+    
 
     <ion-button expand="full" type="submit" [disabled]="recetaForm.invalid">
       Actualizar Receta
