@@ -1,61 +1,47 @@
-/* Asegúrate de que los estilos se apliquen solo a tu página de login */
+/* Contenedor principal */
 .login-container {
-  display: grid;
-  justify-items: center;
-  align-items: center;
-  height: 100vh; /* Asegura que la página ocupe toda la altura */
-  padding: 20px;
+  --background: linear-gradient(to bottom, #263238, #37474f);
+  color: var(--text-color);
+  padding: 1rem;
 }
 
-.card-header-grid {
-  display: grid;
-  justify-items: center; /* Centra el logo */
-  text-align: center;
-  grid-template-columns: 1fr; /* Una sola columna para el logo y el título */
-}
+/* Estilo del ion-card */
+ion-card {
+  background-color: #37474f;
+  border-radius: 12px;
+  color: var(--text-color);
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.4);
+  margin-top: 20px;
 
-.image-container {
-  margin-bottom: 15px;
-}
+  ion-card-header {
+    ion-card-title {
+      font-size: 1.4rem;
+      font-weight: bold;
+      text-align: center;
+      color: var(--primary-color);
+    }
+  }
 
-.login-image {
-  width: 80px; /* Ajusta el tamaño del logo */
-  height: auto;
-}
+  ion-card-content {
+    display: flex;
+    flex-direction: column;
+    gap: 15px; /* Espaciado entre elementos */
 
-ion-card-title {
-  font-size: 24px;
-  font-weight: bold;
-  margin-top: 10px;
-}
+    ion-input {
+      --background: #263238;
+      --color: var(--text-color);
+      --placeholder-color: #b0bec5; /* Color del placeholder */
+      border: 1px solid #00796b; /* Verde azulado */
+      border-radius: 8px;
+      padding: 10px;
+    }
 
-ion-card-content {
-  display: grid;
-  gap: 20px; /* Espacio entre los inputs y el botón */
-}
-
-ion-input {
-  width: 100%; /* Hace que los inputs ocupen el 100% del ancho disponible */
-}
-
-ion-button {
-  width: 100%; /* Hace que el botón ocupe el 100% del ancho */
-}
-
-.signup-text {
-  text-align: center;
-}
-
-.signup-text p {
-  font-size: 14px;
-}
-
-.signup-text a {
-  color: var(--ion-color-primary); /* Color del enlace */
-  font-weight: bold;
-  text-decoration: none;
-}
-
-.signup-text a:hover {
-  text-decoration: underline;
+    ion-button {
+      --background: var(--primary-color);
+      --color: var(--text-color);
+      --border-radius: 20px;
+      font-size: 1rem;
+      padding: 12px;
+    }
+  }
 }

@@ -1,81 +1,61 @@
+/* Contenedor principal */
 .login-container {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 100vh;
-  padding: 20px;
-  background-color: #f9f9f9;
+  --background: linear-gradient(to bottom, #263238, #37474f);
+  color: var(--text-color);
+  padding: 1rem;
 }
 
+/* Estilo del ion-card */
 ion-card {
-  width: 100%;
-  max-width: 300px; 
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  border-radius: 10px;
-}
+  background-color: #37474f;
+  border-radius: 12px;
+  color: var(--text-color);
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.4);
+  padding: 1.5rem;
+  margin-top: 20px;
 
-.card-header-grid {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  text-align: center;
-  margin-bottom: 20px;
-}
+  .card-header-grid {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 1rem;
 
-.image-container {
-  margin-bottom: 10px;
-}
-
-.login-image {
-  width: 80px;
-  height: auto;
-}
-
-ion-card-title {
-  font-size: 24px;
-  font-weight: bold;
-  color: #fef5f5;
-}
-
-
-.input-container {
-  display: flex;
-  flex-direction: column;
-  margin-bottom: 15px;
-
-  label {
-    font-size: 14px;
-    font-weight: bold;
-    color: #ece6e6;
-    margin-bottom: 5px;
-  }
-
-  ion-input {
-    width: 100%;
-    padding: 10px;
-    font-size: 16px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    box-sizing: border-box;
-    z-index: 10; 
-    position: relative;
-
-    &:focus {
-      border-color: var(--ion-color-primary);
-      outline: none;
-      box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+    ion-card-title {
+      font-size: 1.6rem;
+      font-weight: bold;
+      text-align: center;
+      color: var(--primary-color);
     }
   }
-}
 
-ion-button {
-  margin-top: 10px;
-  width: 100%;
-}
+  .input-container {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 15px;
 
-/* Ajustes globales */
-ion-content {
-  pointer-events: auto;
-  position: relative;
-  z-index: 1;
+    label {
+      font-size: 1rem;
+      font-weight: bold;
+      color: var(--primary-color);
+      margin-bottom: 8px;
+    }
+
+    ion-input {
+      --background: #263238;
+      --color: var(--text-color);
+      --placeholder-color: #b0bec5;
+      border: 1px solid #00796b;
+      border-radius: 8px;
+      padding: 10px;
+    }
+  }
+
+  ion-button {
+    --background: var(--primary-color);
+    --color: var(--text-color);
+    --border-radius: 20px;
+    font-size: 1rem;
+    padding: 12px;
+    margin-top: 10px;
+  }
 }

@@ -1,0 +1,71 @@
+/* Contenedor principal */
+.receta-container {
+    --background: linear-gradient(to bottom, #263238, #37474f);
+    color: var(--text-color);
+    padding: 1rem;
+  }
+  
+  /* Estilo del ion-card */
+  ion-card {
+    background-color: #37474f;
+    border-radius: 12px;
+    color: var(--text-color);
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.4);
+    margin-top: 20px;
+  
+    ion-card-header {
+      ion-card-title {
+        font-size: 1.4rem;
+        font-weight: bold;
+        text-align: center;
+        color: var(--primary-color);
+      }
+    }
+  
+    ion-card-content {
+      display: flex;
+      flex-direction: column;
+      gap: 15px; /* Espaciado entre elementos */
+  
+      ion-input {
+        --background: #263238;
+        --color: var(--text-color);
+        --placeholder-color: #b0bec5; /* Color del placeholder */
+        border: 1px solid #00796b; /* Verde azulado */
+        border-radius: 8px;
+        padding: 10px;
+      }
+  
+      ion-input[type="file"] {
+        --background: none; /* Fondo transparente */
+        border: none;
+        color: var(--primary-color);
+      }
+  
+      ion-select {
+        --background: #263238;
+        --placeholder-color: #b0bec5;
+        --color: var(--text-color);
+        border: 1px solid #00796b;
+        border-radius: 8px;
+        padding: 5px;
+      }
+  
+      ion-select-option {
+        --color: var(--text-color);
+      }
+  
+      ion-button {
+        --background: var(--primary-color);
+        --color: var(--text-color);
+        --border-radius: 20px;
+        font-size: 1rem;
+        padding: 12px;
+      }
+  
+      ion-button[color="primary"]:last-child {
+        --background: #d32f2f; /* Rojo para el botón de cancelar */
+      }
+    }
+  }
+  
