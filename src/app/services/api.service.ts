@@ -1,6 +1,8 @@
 import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { environment } from 'src/environments/environment.prod';
+import { Observable } from 'rxjs';
+
 
 @Injectable({
   providedIn: 'root',
@@ -50,10 +52,10 @@ export class ApiService {
   }
 
   getUser(iduser: string, token: string) {
-    const params = new HttpParams().set('iduser', iduser);
-    const headers = new HttpHeaders().set('Authorization', token);
-    return this.http.get(`${this.url}/users`, { params, headers });
+    const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
+    return this.http.get(`${this.url}/users/${iduser}`, { headers });
   }
+  
   
   //recetas
   crearReceta(titulo: string, descripcion: string, ingredientes: string, instrucciones: string, tiempo_coccion: string,
@@ -102,10 +104,11 @@ export class ApiService {
     return this.http.delete(this.url + '/recetas/' + idreceta);
   }
   getReceta(id_user: string, token: string) {
+    const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
     const params = new HttpParams().set('id_user', id_user);
-    const headers = new HttpHeaders().set('Authorization', token);
-    return this.http.get(`${this.url}/recetas`, { params, headers });
-  } 
+    return this.http.get(`${this.url}/recetas`, { headers, params });
+  }
+  
 
 
   //categorias
@@ -132,10 +135,20 @@ export class ApiService {
     return this.http.delete(this.url + '/categorias/' + id_categoria);
     
   }
-  getCate(id_user: string, token: string) {
-    const params = new HttpParams().set('id_user', id_user);
-    const headers = new HttpHeaders().set('Authorization', token);
-    return this.http.get(`${this.url}/categorias`, { params, headers });
+  getCate(idUser: string, token: string): Observable<any> {
+    const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
+    return this.http.get<any>(`${this.url}/categorias?id_user=${idUser}`, { headers });
   }
+  
+  
+  getRecetaById(idReceta: string, token: string) {
+    const headers = new HttpHeaders().set('Authorization', token);
+    return this.http.get(`${this.url}/recetas/${idReceta}`, { headers });
+  }
+
+  getCategorias(id_user: number): Observable<any> {
+    return this.http.get(`${this.url}categorias/names?id_user=${id_user}`);
+  }
+  
 
 }

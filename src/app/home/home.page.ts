@@ -8,10 +8,14 @@ import { Router } from '@angular/router';
   styleUrls: ['home.page.scss'],
 })
 export class HomePage implements OnInit {
+  isAuthenticated: boolean = false;
 
   constructor(private api: ApiService, private router: Router) {}
 
-  ngOnInit() {}
+  ngOnInit() {
+    const token = localStorage.getItem('authToken');
+    this.isAuthenticated = !!token;
+  }
 
   onClick(){
     console.log("hola")

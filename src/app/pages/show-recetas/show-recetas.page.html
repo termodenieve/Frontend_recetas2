@@ -14,23 +14,21 @@
 
       <ion-card-content>
         <p><strong>Categoria:</strong></p>
-        <p>{{ receta.categorias }}</p>
+        <p>{{ receta.categoria }}</p>
         
         <p><strong>Descripción:</strong></p>
         <p>{{ receta.descripcion }}</p>
      
-        <p><strong>Tiempo de cocción en minutos:</strong></p>
+        <p><strong>Tiempo de cocción (min):</strong></p>
         <p>{{ receta.tiempo_coccion }}</p>
       
         <p><strong>Instrucciones:</strong></p>
         <p>{{ receta.instrucciones }}</p>
-
       </ion-card-content>
 
-      <ion-button expand="block" color="primary" (click)="redirectToUpdateRe()">
+      <ion-button expand="block" color="primary" (click)="redirectToUpdateRe(receta.id)">
         Actualizar
-      </ion-button>
+      </ion-button>      
     </ion-card>
   </div>
-
-  
+</ion-content>

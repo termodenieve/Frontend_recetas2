@@ -25,12 +25,13 @@
       <div class="menu-container">
         <ion-button expand="block" (click)="redirectToAddCat()">Crea una categoría</ion-button>
         <ion-button expand="block" (click)="redirectToAddRece()">Crea una receta</ion-button>
-        <ion-button expand="block" (click)="redirectToAddUser()">Regístrate</ion-button>
-        <ion-button expand="block" (click)="redirectTologin()">Inicia Sesión</ion-button>
+        <ion-button expand="block" *ngIf="!isAuthenticated" (click)="redirectToAddUser()">Regístrate</ion-button>
+        <ion-button expand="block" *ngIf="!isAuthenticated" (click)="redirectTologin()">Inicia Sesión</ion-button>
+        <ion-button expand="block" *ngIf="isAuthenticated" (click)="logout()">Cerrar Sesión</ion-button>
       </div>
     </ion-content>
-    
   </ion-menu>
+  
 
   <div class="ion-page" id="main-content">
     <ion-header>

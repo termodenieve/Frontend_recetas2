@@ -14,39 +14,34 @@ export class ShowRecetasPage implements OnInit {
 
   constructor(private api: ApiService, private router: Router) {}
 
-  ngOnInit(){
+  ngOnInit() {
+    this.loadRecetas();
+  }
+
+  loadRecetas() {
     this.userId = localStorage.getItem('idusers');
     this.token = localStorage.getItem('authToken');
 
-    if(this.userId && this.token){
-      console.log(this.userId);
+    if (this.userId && this.token) {
       this.api.getReceta(this.userId, this.token).subscribe({
         next: (res: any) => {
-          this.recetas.push(...res.data);
-          console.log(this.recetas)
-        }
-      })
+          if (res?.data) {
+            this.recetas = res.data;
+          } else {
+            console.error('No data received:', res);
+          }
+        },
+        error: (err) => {
+          console.error('Error fetching recetas:', err);
+        },
+      });
+    } else {
+      console.warn('User ID or Token is missing.');
     }
   }
 
-  redirectToUpdateRe() {
-    this.router.navigate(['/update-recetas']);  
+  redirectToUpdateRe(idReceta: string) {
+    this.router.navigate([`/update-recetas/${idReceta}`]);
   }
-  redirectToshowhome(){
-    this.router.navigate(['/home']);
-  }
-  redirectToShowCat(){
-    this.router.navigate(['/show-categorias']);
-  }
-
-  redirectToShowUser(){
-    this.router.navigate(['/perfil']);
-  }
-
-  redirectToShowRece(){
-    this.router.navigate(['/show-recetas']);
-  }
-
   
-
 }
