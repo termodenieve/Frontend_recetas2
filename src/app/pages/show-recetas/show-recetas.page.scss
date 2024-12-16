@@ -1,69 +1,80 @@
 /* Contenedor principal */
 ion-content {
-    --background: linear-gradient(to bottom, #263238, #37474f);
-    color: var(--text-color);
-    padding: 1rem;
+  --background: linear-gradient(to bottom, #447790, #1c272d);
+  color: var(--text-color);
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center; /* Centra las tarjetas */
+  justify-content: flex-start;
+}
+
+/* Tarjetas de recetas */
+ion-card {
+  background-color: #37474f;
+  border-radius: 12px;
+  color: var(--text-color);
+  box-shadow: 0 2px 4px rgba(116, 153, 209, 0.2);
+  margin-bottom: 10px; /* Espaciado entre tarjetas */
+  width: 100%;
+  max-width: 320px; /* Limita el ancho de las tarjetas */
+  padding: 1rem;
+  margin-left: auto;
+  margin-right: auto;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden; /* Para no tener desbordamiento de la tarjeta */
+}
+
+/* Título de la tarjeta */
+ion-card-header {
+  ion-card-title {
+    font-size: 1.3rem;
+    font-weight: bold;
+    text-align: center;
+    color: var(--primary-color);
+    margin-bottom: 5px;
   }
+}
+
+/* Imagen de la receta */
+.receta-imagen {
+  width: 100%;
+  height: auto;
+  border-radius: 8px;
+  margin-bottom: 10px;
+}
+
+/* Contenido de la tarjeta */
+ion-card-content {
+  font-size: 0.95rem;
+  line-height: 1.4;
+  color: var(--text-color);
+  max-height: 300px;  /* Ajusta un límite de altura para que se vea todo el contenido */
+  overflow-y: auto;   /* Permite el desplazamiento si hay mucho contenido */
   
-  /* Encabezado */
-  ion-header {
-    ion-toolbar {
-      background-color: #37474f;
-      color: var(--text-color);
-  
-      ion-title {
-        font-size: 1.6rem;
-        font-weight: bold;
-        text-align: center;
-        color: var(--primary-color);
-      }
-    }
+  p {
+    margin-bottom: 8px;
   }
-  
-  /* Tarjetas de recetas */
-  ion-card {
-    background-color: #37474f;
-    border-radius: 12px;
-    color: var(--text-color);
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.4);
-    margin-bottom: 20px;
-  
-    ion-card-header {
-      ion-card-title {
-        font-size: 1.4rem;
-        font-weight: bold;
-        text-align: center;
-        color: var(--primary-color);
-      }
-    }
-  
-    .receta-imagen {
-      width: 100%;
-      height: auto;
-      border-radius: 8px;
-      margin: 10px 0;
-      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.4);
-    }
-  
-    ion-card-content {
-      font-size: 1rem;
-      line-height: 1.6;
-      p {
-        margin-bottom: 10px;
-  
-        strong {
-          color: var(--primary-color);
-        }
-      }
-    }
-  
-    ion-button {
-      --background: var(--primary-color);
-      --color: var(--text-color);
-      --border-radius: 20px;
-      font-size: 1rem;
-      padding: 12px;
-      margin-top: 15px;
-    }
+
+  strong {
+    color: var(--primary-color);
   }
-  
+}
+
+/* Botones */
+ion-button {
+  --background: var(--primary-color);
+  --color: var(--text-color);
+  --border-radius: 20px;
+  font-size: 0.9rem;
+  padding: 10px;
+  margin-top: 8px;
+}
+
+/* Botón de eliminar con color específico */
+ion-button[color="danger"] {
+  --background: #e53935;
+  --color: white;
+  margin-top: 8px;
+}

@@ -35,19 +35,6 @@ export class ShowCategoriasPage implements OnInit {
   redirectToshowhome(){
     this.router.navigate(['/home']);
   }
-  redirectToShowCat(){
-    this.router.navigate(['/show-categorias']);
-  }
-
-  redirectToShowUser(){
-    this.router.navigate(['/perfil']);
-  }
-
-  redirectToShowRece(){
-    this.router.navigate(['/show-recetas']);
-  }
-
-
 
 
 }

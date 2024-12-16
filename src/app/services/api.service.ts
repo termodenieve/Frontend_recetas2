@@ -27,19 +27,22 @@ export class ApiService {
       email: email,
     });
   }
-  obtenerUserPorId(iduser: string) {
-    return this.http.get(this.url + '/users/' + iduser);
+ 
+  obtenerUserPorId(userId: string | number) {
+    const id = userId.toString(); // Convertir a string si es necesario
+    return this.http.get(`${this.url}/users/${id}`);
   }
   
-  actualizarUser(name: string, username: string, email: string, password: string, iduser: string) {
-    console.log('ID del usuario enviado:', iduser);
-    return this.http.put(this.url + '/users/' + iduser, {
+  actualizarUser(name: string, username: string, email: string, password: string, userId: number) {
+    console.log('ID del usuario enviado:', userId);
+    return this.http.put(`${this.url}/users/${userId}`, {
       name: name,
       username: username,
       email: email,
       password: password,
     });
   }
+  
   
 
   obtenerUsuarioPorId(iduser: string) {
@@ -64,7 +67,7 @@ export class ApiService {
     id_user: string,
     token: string
   ) {
-    const headers = new HttpHeaders().set('Authorization', token);
+    const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
     const body = {
       titulo : titulo,
       descripcion : descripcion,
@@ -86,34 +89,53 @@ export class ApiService {
     tiempo_coccion: string,
     imagen: string,
     id_categoria: string,
-    token: string){
-      const headers = new HttpHeaders().set('Authorization', token);
-      const body = {
-        titulo: titulo,
-        descripcion: descripcion,
-        ingredientes: ingredientes,
-        instrucciones: instrucciones,
-        tiempo_coccion: tiempo_coccion,
-        imagen: imagen,
-        id_categoria: id_categoria
-      };
-    return this.http.put(this.url + '/recetas', body, {headers});
+    idrecetas: string, // Agregar el ID de la receta
+    token: string
+    
+  ) {
+    const headers = {
+      'Authorization': `Bearer ${token}` // Agrega el token en el encabezado
+    };
+    const body = {
+      titulo: titulo,
+      descripcion: descripcion,
+      ingredientes: ingredientes,
+      instrucciones: instrucciones,
+      tiempo_coccion: tiempo_coccion,
+      imagen: imagen,
+      id_categoria: id_categoria,
+      idrecetas: idrecetas,
+      
+    };
+
+    
+    return this.http.put(this.url + '/recetas/'+ idrecetas, body, { headers: headers });
   }
 
-  borrarReceta(idreceta: number) {
-    return this.http.delete(this.url + '/recetas/' + idreceta);
-  }
-  getReceta(id_user: string, token: string) {
-    const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
-    const params = new HttpParams().set('id_user', id_user);
-    return this.http.get(`${this.url}/recetas`, { headers, params });
+  borrarReceta(idreceta: string, headers: HttpHeaders) {
+    console.log('', this.url + '/recetas/' + idreceta);  
+    return this.http.delete(this.url + '/recetas/' + idreceta, { headers });
   }
   
+  
+    
+  getReceta(id_receta: string, token: string) {
+    const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`); 
+  
+    return this.http.get(`${this.url}/recetas/${id_receta}`, { headers });
+  }
+
+  getReceta2(id_receta: string, token: string) {
+    const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`); 
+  
+    return this.http.get(`${this.url}/recetasuser/${id_receta}`, { headers });
+  }
+
 
 
   //categorias
   crearCategoria(nombre: string, descripcion: string, id_user: string, token: string) {
-    const headers = new HttpHeaders().set('Authorization', token);
+    const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
     const body = {
       nombre: nombre,
       descripcion: descripcion,
@@ -130,11 +152,11 @@ export class ApiService {
     });
   }
   
-
-  borrarCate(id_categoria: number) {
-    return this.http.delete(this.url + '/categorias/' + id_categoria);
-    
+  
+  borrarCate(idcategoria: string) {
+    return this.http.delete(this.url + '/categorias/' + idcategoria);
   }
+  
   getCate(idUser: string, token: string): Observable<any> {
     const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
     return this.http.get<any>(`${this.url}/categorias?id_user=${idUser}`, { headers });
@@ -146,8 +168,10 @@ export class ApiService {
     return this.http.get(`${this.url}/recetas/${idReceta}`, { headers });
   }
 
+
+
   getCategorias(id_user: number): Observable<any> {
-    return this.http.get(`${this.url}categorias/names?id_user=${id_user}`);
+    return this.http.get(`${this.url}/categorias/${id_user}`);
   }
   
 

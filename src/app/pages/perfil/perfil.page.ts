@@ -22,7 +22,7 @@ export class PerfilPage implements OnInit {
       console.log(this.userId);
       this.api.getUser(this.userId, this.token).subscribe({
         next: (res: any) => {
-          this.users = [res.data]; // Ajusta según el formato de la respuesta
+          this.users = [res.users]; // Ajusta según el formato de la respuesta
           console.log(this.users);
         },
         error: (err) => {

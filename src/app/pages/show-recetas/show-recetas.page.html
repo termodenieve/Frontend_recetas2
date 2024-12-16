@@ -1,28 +1,35 @@
-<ion-content [fullscreen]="true">
-  <div class="ion-padding">
-    <ion-card *ngFor="let receta of recetas">
-      <ion-card-header>
-        <ion-card-title class="ion-text-center">{{ receta.titulo }}</ion-card-title>
-      </ion-card-header>
-      <ion-img [src]="receta.imagen" alt="{{ receta.titulo }}" class="receta-imagen"></ion-img>
-
-      <ion-card-content>
-        <p><strong>Categoria:</strong></p>
-        <p>{{ receta.categoria }}</p>
-        
-        <p><strong>Descripción:</strong></p>
-        <p>{{ receta.descripcion }}</p>
-     
-        <p><strong>Tiempo de cocción (min):</strong></p>
-        <p>{{ receta.tiempo_coccion }}</p>
+<ion-card *ngFor="let receta of recetas">
+  <ion-card-header>
+    <ion-card-title class="ion-text-center">{{ receta.titulo || 'Sin título' }}</ion-card-title>
+  </ion-card-header>
+  
+  <ion-card-content>
+    <p><strong>Categoría:</strong></p>
+    <p>{{ receta.categorias }}</p>
+    
+    <p><strong>Descripción:</strong></p>
+    <p>{{ receta.descripcion || 'No se proporcionó descripción' }}</p>
+ 
+    <p><strong>Tiempo de cocción (min):</strong></p>
+    <p>{{ receta.tiempo_coccion ? receta.tiempo_coccion : 'No especificado' }}</p>
+  
+    <p><strong>Instrucciones:</strong></p>
+    <p>{{ receta.instrucciones || 'Sin instrucciones' }}</p>
+    
+    <ion-button expand="block" color="primary" (click)="redirectToUpdateRe(receta.idrecetas)">
+      Actualizar
       
-        <p><strong>Instrucciones:</strong></p>
-        <p>{{ receta.instrucciones }}</p>
-      </ion-card-content>
+    </ion-button> 
+  
+    <ion-button expand="block" color="danger" (click)="presentConfirm(receta.idrecetas)">
+      Eliminar
+    </ion-button>
 
-      <ion-button expand="block" color="primary" (click)="redirectToUpdateRe(receta.id)">
-        Actualizar
-      </ion-button>      
-    </ion-card>
-  </div>
-</ion-content>
+    <ion-button expand="block" color="primary" (click)="redirectTohome()">
+      cancelar
+      
+    </ion-button> 
+    
+  </ion-card-content>
+  
+</ion-card>

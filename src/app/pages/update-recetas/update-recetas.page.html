@@ -8,77 +8,68 @@
   <form [formGroup]="recetaForm" (ngSubmit)="actualizarReceta()">
     <ion-item>
       <ion-label position="floating">Título</ion-label>
-      <ion-input formControlName="titulo"></ion-input>
-    </ion-item>
-
-    <ion-item *ngIf="recetaForm.get('titulo')?.invalid && recetaForm.get('titulo')?.touched">
-      <ion-text color="danger">
-        El título es obligatorio.
-      </ion-text>
+      <ion-input
+        formControlName="titulo"
+        [value]="recetaForm.get('titulo')?.value"
+      ></ion-input>
     </ion-item>
 
     <ion-item>
       <ion-label position="floating">Descripción</ion-label>
-      <ion-textarea formControlName="descripcion"></ion-textarea>
-    </ion-item>
-
-    <ion-item *ngIf="recetaForm.get('descripcion')?.invalid && recetaForm.get('descripcion')?.touched">
-      <ion-text color="danger">
-        La descripción es obligatoria.
-      </ion-text>
+      <ion-textarea
+        formControlName="descripcion"
+        [value]="recetaForm.get('descripcion')?.value"
+      ></ion-textarea>
     </ion-item>
 
     <ion-item>
       <ion-label position="floating">Instrucciones</ion-label>
-      <ion-textarea formControlName="instrucciones"></ion-textarea>
-    </ion-item>
-
-    <ion-item *ngIf="recetaForm.get('instrucciones')?.invalid && recetaForm.get('instrucciones')?.touched">
-      <ion-text color="danger">
-        Las instrucciones son obligatorias.
-      </ion-text>
+      <ion-textarea
+        formControlName="instrucciones"
+        [value]="recetaForm.get('instrucciones')?.value"
+      ></ion-textarea>
     </ion-item>
 
     <ion-item>
       <ion-label position="floating">Ingredientes</ion-label>
-      <ion-textarea formControlName="ingredientes"></ion-textarea>
-    </ion-item>
-
-    <ion-item *ngIf="recetaForm.get('ingredientes')?.invalid && recetaForm.get('ingredientes')?.touched">
-      <ion-text color="danger">
-        Los ingredientes son obligatorios.
-      </ion-text>
+      <ion-textarea
+        formControlName="ingredientes"
+        [value]="recetaForm.get('ingredientes')?.value"
+      ></ion-textarea>
     </ion-item>
 
     <ion-item>
-      <ion-label position="floating">Tiempo de Cocción</ion-label>
-      <ion-input type="number" formControlName="tiempo_coccion"></ion-input>
-    </ion-item>
-
-    <ion-item *ngIf="recetaForm.get('tiempo_coccion')?.invalid && recetaForm.get('tiempo_coccion')?.touched">
-      <ion-text color="danger">
-        El tiempo de cocción debe ser un número mayor a 0.
-      </ion-text>
+      <ion-label position="floating">Tiempo de Cocción (minutos)</ion-label>
+      <ion-input
+        type="number"
+        formControlName="tiempo_coccion"
+        [value]="recetaForm.get('tiempo_coccion')?.value"
+      ></ion-input>
     </ion-item>
 
     <ion-item>
       <ion-label>Categoría</ion-label>
-      <ion-select formControlName="id_categoria" placeholder="Seleccione una categoría">
-        <ion-select-option *ngFor="let categoria of categorias" [value]="categoria.nombre">
+      <ion-select
+        formControlName="id_categoria"
+        [value]="recetaForm.get('id_categoria')?.value"
+        placeholder="Seleccione una categoría"
+      >
+        <ion-select-option
+          *ngFor="let categoria of categorias"
+          [value]="categoria.idcategoria"
+        >
           {{ categoria.nombre }}
         </ion-select-option>
       </ion-select>
     </ion-item>
 
-    <ion-item *ngIf="recetaForm.get('id_categoria')?.invalid && recetaForm.get('id_categoria')?.touched">
-      <ion-text color="danger">
-        La categoría es obligatoria.
-      </ion-text>
-    </ion-item>
-
     <ion-item>
       <ion-label>Imagen</ion-label>
-      <input type="file" (change)="onFileChange($event)" />
+      <input
+        type="file"
+        (change)="onFileChange($event)"
+        accept="image/*"
+      />
     </ion-item>
 
     <ion-button expand="full" type="submit" [disabled]="recetaForm.invalid">

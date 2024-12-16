@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ApiService } from 'src/app/services/api.service';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
+import { Token } from '@angular/compiler';
 
 @Component({
   selector: 'app-update-recetas',
@@ -10,36 +11,33 @@ import { ActivatedRoute } from '@angular/router';
 })
 export class UpdateRecetasPage implements OnInit {
   recetaForm!: FormGroup;
-  categorias: any[] = [];  // Lista de categorías
+  
+  categorias: any[] = [];
   idUser!: string;
   idReceta!: string;
 
   constructor(
     private fb: FormBuilder,
     private apiService: ApiService,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private router: Router
   ) {}
 
   ngOnInit() {
-    // Obtener el ID de la receta de la ruta
     this.idReceta = this.route.snapshot.paramMap.get('id') || '';
     const token = localStorage.getItem('authToken');
-    const idUser = localStorage.getItem('idusers');
-  
-    if (!token || !idUser) {
+    this.idUser = localStorage.getItem('idusers') || '';
+
+    if (!token || !this.idUser) {
       console.error('Token o ID de usuario no disponibles');
       return;
     }
-  
-    this.idUser = idUser;
-  
-    // Convertir idUser a número
-    const idUserNumber = parseInt(idUser, 10);
-    if (isNaN(idUserNumber)) {
-      console.error('ID de usuario inválido');
+
+    if (!this.idReceta) {
+      console.error('ID de receta no proporcionado.');
       return;
     }
-  
+
     // Inicializar formulario
     this.recetaForm = this.fb.group({
       titulo: ['', Validators.required],
@@ -50,16 +48,22 @@ export class UpdateRecetasPage implements OnInit {
       id_categoria: ['', Validators.required],
       imagen: [null],
     });
-  
-    // Cargar categorías
-    const categoriasUrl = `${this.apiService.url}categorias/names?id_user=${idUserNumber}`;
-    console.log(`URL de solicitud de categorías: ${categoriasUrl}`);
-    
+
+    this.cargarCategorias(token);
+    this.cargarReceta(token);
+  }
+
+  cargarCategorias(token: string) {
+    const idUserNumber = parseInt(this.idUser, 10);
+    if (isNaN(idUserNumber)) {
+      console.error('ID de usuario inválido');
+      return;
+    }
+
     this.apiService.getCategorias(idUserNumber).subscribe(
       (response: any) => {
-        // Verificar si las categorías están en la respuesta
         if (response && response.categorias) {
-          this.categorias = response.categorias || [];
+          this.categorias = response.categorias;
         } else {
           console.error('Error: No se encontraron categorías');
         }
@@ -68,23 +72,20 @@ export class UpdateRecetasPage implements OnInit {
         console.error('Error al cargar categorías:', error);
       }
     );
-  
-    // Cargar los datos de la receta
-    const recetaUrl = `${this.apiService.url}recetas/${this.idReceta}`;
-    console.log(`URL de solicitud de receta: ${recetaUrl}`);
-    
-    this.apiService.getRecetaById(this.idReceta, token).subscribe(
+  }
+
+  cargarReceta(token: string) {
+    this.apiService.getReceta(this.idReceta, token).subscribe(
       (response: any) => {
-        console.log('Respuesta de la receta:', response);
-        if (response && response.data) {
-          const receta = response.data;
+        if (response && response.users) {
+          const receta = response.users;
           this.recetaForm.patchValue({
             titulo: receta.titulo,
             descripcion: receta.descripcion,
             instrucciones: receta.instrucciones,
             ingredientes: receta.ingredientes,
             tiempo_coccion: receta.tiempo_coccion,
-            id_categoria: receta.id_categoria,  // Establecer la categoría seleccionada
+            id_categoria: receta.id_categoria,
           });
         } else {
           console.error('Error: No se encontraron datos de la receta');
@@ -95,11 +96,28 @@ export class UpdateRecetasPage implements OnInit {
       }
     );
   }
-  
+
   actualizarReceta() {
     if (this.recetaForm.valid) {
-      const recetaData = { ...this.recetaForm.value, id_user: this.idUser };
-      const token = localStorage.getItem('authToken') || '';
+      const recetaData = {
+        ...this.recetaForm.value,
+        imagen: this.recetaForm.get('imagen')?.value,
+        id_user: this.idUser,
+        idrecetas: this.idReceta,
+       
+      };
+
+      const token = localStorage.getItem('authToken');
+      if (!token) {
+        console.error('Token no encontrado');
+        return;
+      }
+
+      // Agregar el token a las cabeceras
+      
+
+
+
 
       this.apiService
         .actualizarReceta(
@@ -110,11 +128,15 @@ export class UpdateRecetasPage implements OnInit {
           recetaData.tiempo_coccion,
           recetaData.imagen,
           recetaData.id_categoria,
+          recetaData.idrecetas,
           token
+          
+          
         )
         .subscribe(
           (response) => {
             console.log('Receta actualizada con éxito:', response);
+            this.redirectToshowhome();
           },
           (error) => {
             console.error('Error al actualizar receta:', error);
@@ -133,5 +155,9 @@ export class UpdateRecetasPage implements OnInit {
     } else {
       this.recetaForm.get('imagen')?.setValue(null);
     }
+  }
+
+  redirectToshowhome() {
+    this.router.navigate(['/home']);
   }
 }
